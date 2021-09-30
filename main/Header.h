@@ -1,18 +1,25 @@
 #pragma once
 #include <iostream>
 #include <vld.h>
-#include <Library.h>
+#include <Strophoid.h>
+
+int dialog(const char* msgs[], int N);
 
 template <class T>
-int getPositiveNum(T& a);
-int dialog(const char* msgs[], int N);
-int getInt(int* a);
-template <class T>
-int getNum(T& a) {
-	std::cin >> a;
-	if (!std::cin.good())
-		return -1;
-	return 1;
+int getValue(T& value) {
+	while (true) {
+		std::cin >> value;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
+			std::cout << "Invalid input\n";
+		}
+		else {
+			std::cin.ignore(32767, '\n');
+			return 1;
+		}
+	}
 }
 
 int D_Show(strophoid* object);
